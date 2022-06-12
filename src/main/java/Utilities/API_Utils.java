@@ -12,6 +12,7 @@ import static io.restassured.RestAssured.given;
 
 public class API_Utils {
     public static Properties configs;
+
     public static RequestSpecification request;
 
     public static Response response;
@@ -34,11 +35,14 @@ public class API_Utils {
 
     public static Response getRequest(String endpoint) {
 
+        request = RestAssured.given();
         RestAssured.given();
-
+        System.out.println("hauka1: ");
         request.header("Content-Type", "application/json");
 
-        response = request.get(endpoint);
+        System.out.println("hauka2: ");
+//        response = request.get(endpoint);
+        response = request.get("https://reqres.in/api/users?page=2");
 
         return response;
     }
