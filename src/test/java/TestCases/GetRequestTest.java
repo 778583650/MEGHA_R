@@ -14,7 +14,6 @@ import java.io.IOException;
 
 
 public class GetRequestTest {
-
     String endpoint;
     @BeforeClass
     public void startUp() throws IOException {
@@ -23,16 +22,11 @@ public class GetRequestTest {
 
         API_Utils.setBaseURL();
     }
-
     @Test
     public void getAllUsers(){
 
-
-        System.out.println("inside get method");
-
+//      Specify get user end point
         endpoint=API_Utils.configs.getProperty("get_user_end_point");
-
-        System.out.println("endpoint is ="+endpoint);
 
         Response response=API_Utils.getRequest(endpoint);
 
@@ -40,15 +34,13 @@ public class GetRequestTest {
 
         String responseBody = response.getBody().asString();
 
-
-
         System.out.println("Response Body is=" + responseBody);
+
 //        status code validation
+
         int statusCode= response.getStatusCode();
 
-
         System.out.println("Status Code is=" +statusCode );
-
 
         Assert.assertEquals(statusCode,200);
 

@@ -27,23 +27,17 @@ public class PostRequestTest {
         @Test
         public void createUser () throws IOException {
 
-            System.out.println("inside get method");
-
             String body = Files.readString(Path.of(System.getProperty("user.dir") + "\\src\\test\\resources\\api_test_data\\CreateUserBody.json"));
-
-            System.out.println("body is="+body);
 
             Response response = API_Utils.postRequest( "https://reqres.in/api/users",body);
 
-            System.out.println("after post method");
+//            To verify expected vs actual result
 
             Assert.assertEquals(response.getStatusCode(),201,"status code mismatch");
 
-            System.out.println("after post method1");
+            String job =  response.getBody().jsonPath().getJsonObject("job").toString();
 
-            String id =  response.getBody().jsonPath().getJsonObject("id").toString();
-
-            System.out.println("Id is ="+id);
+            System.out.println("Job is ="+job);
 
             String name =  response.getBody().jsonPath().getJsonObject("name").toString();
 
